@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6B507F372A3515ED006EDEDD /* WorkoutRep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B507F362A3515ED006EDEDD /* WorkoutRep.swift */; };
 		6B507F392A3516AD006EDEDD /* StepsCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B507F382A3516AD006EDEDD /* StepsCircle.swift */; };
+		6B597D0D2A3663E4009F27F5 /* ProgressCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B597D0C2A3663E4009F27F5 /* ProgressCircle.swift */; };
 		6BB028092A34157200AC1711 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 6BB028082A34157200AC1711 /* SwiftUICharts */; };
 		6BE164DC2A3400000070A75C /* tiempo-poc Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6BE164DB2A3400000070A75C /* tiempo-poc Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6BE164E12A3400000070A75C /* tiempo_pocApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE164E02A3400000070A75C /* tiempo_pocApp.swift */; };
@@ -44,6 +45,8 @@
 /* Begin PBXFileReference section */
 		6B507F362A3515ED006EDEDD /* WorkoutRep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRep.swift; sourceTree = "<group>"; };
 		6B507F382A3516AD006EDEDD /* StepsCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsCircle.swift; sourceTree = "<group>"; };
+		6B597D0C2A3663E4009F27F5 /* ProgressCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCircle.swift; sourceTree = "<group>"; };
+		6B597D0E2A366E23009F27F5 /* tiempo-poc Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "tiempo-poc Watch App.entitlements"; sourceTree = "<group>"; };
 		6BE164D52A3400000070A75C /* tiempo-poc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tiempo-poc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BE164DB2A3400000070A75C /* tiempo-poc Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tiempo-poc Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BE164E02A3400000070A75C /* tiempo_pocApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tiempo_pocApp.swift; sourceTree = "<group>"; };
@@ -68,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				6B507F382A3516AD006EDEDD /* StepsCircle.swift */,
+				6B597D0C2A3663E4009F27F5 /* ProgressCircle.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -100,6 +104,7 @@
 		6BE164DF2A3400000070A75C /* tiempo-poc Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				6B597D0E2A366E23009F27F5 /* tiempo-poc Watch App.entitlements */,
 				6B507F352A3515D4006EDEDD /* Models */,
 				6BF7FF9F2A34FF6500F23740 /* Views */,
 				6BE164E02A3400000070A75C /* tiempo_pocApp.swift */,
@@ -234,6 +239,7 @@
 				6B507F372A3515ED006EDEDD /* WorkoutRep.swift in Sources */,
 				6BE164E32A3400000070A75C /* ContentView.swift in Sources */,
 				6BE164E12A3400000070A75C /* tiempo_pocApp.swift in Sources */,
+				6B597D0D2A3663E4009F27F5 /* ProgressCircle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +373,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "tiempo-poc Watch App/tiempo-poc Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -375,6 +382,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "tiempo-poc";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your app requires access to health data for...";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -399,6 +407,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "tiempo-poc Watch App/tiempo-poc Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -407,6 +416,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "tiempo-poc";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your app requires access to health data for...";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -436,6 +446,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CUF2WSA7V7;
 				INFOPLIST_KEY_CFBundleDisplayName = "tiempo-poc";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your app requires access to health data for...";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "tiempo.tiempo-poc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -454,6 +465,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CUF2WSA7V7;
 				INFOPLIST_KEY_CFBundleDisplayName = "tiempo-poc";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your app requires access to health data for...";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "tiempo.tiempo-poc";
 				PRODUCT_NAME = "$(TARGET_NAME)";

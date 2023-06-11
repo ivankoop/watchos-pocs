@@ -14,6 +14,7 @@ struct StepsCircle: View {
   let gap: Double = 0.04
   var reps: [WorkOutRep]
 
+
   // Calculate rotationAngle based on the number of reps
   var rotationAngle: Angle {
 
@@ -43,7 +44,7 @@ struct StepsCircle: View {
 
   // Calculate restItemPosModifier based on the number of reps
   var restItemPosModifier: Double {
-    return max((Double(reps.count) - 2) * 0.25, 0)
+      return (max((Double(reps.count) + 6) * 0.25, 0) )
   }
 
   var body: some View {
@@ -65,19 +66,19 @@ struct StepsCircle: View {
 
       ForEach(0..<reps.count) { index in
         Circle()
-          .fill(Color.gray)
+          .fill(reps[index].getRestColor())
           .frame(width: 5, height: 5)
-          .offset(y: -78)
+          .offset(y: -75)
           .rotationEffect(
             .degrees((Double(index) + restItemPosModifier) * (360.0 / Double(reps.count))))
       }
-    }.rotationEffect(rotationAngle).frame(width: 155, height: 155)
+    }.rotationEffect(rotationAngle).frame(width: 150, height: 150)
   }
 }
 
 #Preview{
   StepsCircle(reps: [
-    WorkOutRep(state: .active, color: .yellow),
+    WorkOutRep(state: .rest, color: .yellow),
     WorkOutRep(state: .pending, color: .yellow),
     WorkOutRep(state: .pending, color: .yellow),
     WorkOutRep(state: .pending, color: .yellow),
@@ -87,5 +88,6 @@ struct StepsCircle: View {
     WorkOutRep(state: .pending, color: .yellow),
     WorkOutRep(state: .pending, color: .yellow),
     WorkOutRep(state: .pending, color: .yellow),
+    
   ])
 }

@@ -20,25 +20,36 @@ struct ContentView: View {
     WorkOutRep(state: .pending, color: .yellow),
     WorkOutRep(state: .pending, color: .yellow),
     WorkOutRep(state: .pending, color: .yellow),
-    WorkOutRep(state: .pending, color: .yellow),
-    WorkOutRep(state: .pending, color: .yellow),
-    WorkOutRep(state: .pending, color: .yellow),
-    WorkOutRep(state: .pending, color: .yellow),
-    WorkOutRep(state: .pending, color: .yellow),
-    
   ]
 
   @State var activeRepIndex = 0
   @State var elapsedSeconds = 0
+  @State var heartRate: Int = 0
 
   var body: some View {
     VStack {
       ZStack {
+        ProgressCircle(progress: 0.8)
         StepsCircle(reps: reps)
-
-        Text("\(elapsedSeconds / 60):\(elapsedSeconds % 60, specifier: "%02d")")
-          .font(.largeTitle)
-          .foregroundColor(.white)
+          
+          VStack {
+              Text("3 of 4").foregroundColor(.yellow)
+              Text("\(elapsedSeconds / 60):\(elapsedSeconds % 60, specifier: "%02d")")
+                .font(.largeTitle)
+                .foregroundColor(.white)
+              HStack {
+                  // TODO: improve size and spacing
+                  Image(systemName: "heart.fill")
+                              .foregroundColor(.white)
+                              .font(.body)
+                  Text("\(heartRate)")
+                  Image(systemName: "arrow.down")
+                              .foregroundColor(.white)
+                              .font(.body)
+                  
+              }
+          }
+       
       }
 
     }.onAppear {
@@ -46,27 +57,40 @@ struct ContentView: View {
     }
   }
 
-  func startTimer() {
-    Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-      self.elapsedSeconds += 1
-
-      if self.elapsedSeconds % 5 == 0 {
-        // Mark the current rep as active and the previous rep as completed
-        if activeRepIndex < reps.count {
-          if activeRepIndex > 0 {
-            reps[activeRepIndex - 1].state = .completed
-          }
-          reps[activeRepIndex].state = .active
-          activeRepIndex += 1
-
-          // If all reps are now active or completed, stop the timer
-          if activeRepIndex == reps.count {
-            timer.invalidate()
-          }
+    func startTimer() {
+        let healthStore = HKHealthStore()
+        let heartRateType = HKQuantityType.quantityType(forIdentifier: .heartRate)!
+        
+        // Request permission to read heart rate data
+        healthStore.requestAuthorization(toShare: [], read: [heartRateType]) { success, error in
+            if success {
+                let query = HKAnchoredObjectQuery(type: heartRateType, predicate: nil, anchor: nil, limit: HKObjectQueryNoLimit) { (query, samplesOrNil, deletedObjectsOrNil, newAnchor, errorOrNil) in
+                    if let samples = samplesOrNil as? [HKQuantitySample] {
+                        // Process the new heart rate samples...
+                        DispatchQueue.main.async {
+                            self.heartRate = Int(samples.last?.quantity.doubleValue(for: HKUnit(from: "count/min")) ?? 0)
+                        }
+                    }
+                }
+                
+                // Fetch new data as it becomes available
+                query.updateHandler = { (query, samplesOrNil, deletedObjectsOrNil, newAnchor, errorOrNil) in
+                    if let samples = samplesOrNil as? [HKQuantitySample] {
+                        // Process the new heart rate samples...
+                        DispatchQueue.main.async {
+                            self.heartRate = Int(samples.last?.quantity.doubleValue(for: HKUnit(from: "count/min")) ?? 0)
+                        }
+                    }
+                }
+                
+                // Execute the query
+                healthStore.execute(query)
+            } else if let error = error {
+                
+                print("Failed to request heart rate data: \(error)")
+            }
         }
-      }
     }
-  }
 }
 #Preview{
   ContentView()
